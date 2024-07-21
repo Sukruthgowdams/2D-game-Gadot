@@ -1,0 +1,131 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://farmingTilesheetComplete.png" type="Texture" id=1]
+[ext_resource path="res://shopmenu.gd" type="Script" id=2]
+[ext_resource path="res://character/berryseedpack.png" type="Texture" id=3]
+[ext_resource path="res://character/cornseedpack.png" type="Texture" id=4]
+[ext_resource path="res://character/coin.png" type="Texture" id=5]
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 176, 80, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 206, 217 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 20 ) ],
+"loop": true,
+"name": "coins",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "berryseed",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "randomseed",
+"speed": 5.0
+} ]
+
+[node name="shopmenu" type="StaticBody2D"]
+visible = false
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 19.0
+margin_top = 21.0
+margin_right = 91.0
+margin_bottom = 48.0
+color = Color( 0.396078, 0.4, 0.392157, 1 )
+
+[node name="Buttonleft" type="Button" parent="."]
+show_behind_parent = true
+light_mask = 513
+margin_left = 22.0
+margin_top = 30.0
+margin_right = 34.0
+margin_bottom = 50.0
+
+[node name="buttonlefticon" type="AnimatedSprite" parent="."]
+position = Vector2( 30, 44 )
+rotation = 1.5708
+scale = Vector2( 1.0625, 1.46875 )
+frames = SubResource( 5 )
+
+[node name="Buttonright" type="Button" parent="."]
+modulate = Color( 0.992157, 0.992157, 0.992157, 1 )
+self_modulate = Color( 0.988235, 0.988235, 0.988235, 1 )
+show_behind_parent = true
+light_mask = 513
+margin_left = 36.0
+margin_top = 30.0
+margin_right = 48.0
+margin_bottom = 50.0
+
+[node name="buttonrighticon" type="AnimatedSprite" parent="."]
+position = Vector2( 41, 43 )
+rotation = -1.5708
+scale = Vector2( 1.10937, 1.26563 )
+frames = SubResource( 5 )
+
+[node name="coinicon2" type="AnimatedSprite" parent="."]
+position = Vector2( 74, 31 )
+scale = Vector2( 0.0682574, 0.0581132 )
+frames = SubResource( 21 )
+animation = "coins"
+
+[node name="pricelabel" type="RichTextLabel" parent="."]
+margin_left = 40.0
+margin_top = 25.0
+margin_right = 76.0
+margin_bottom = 40.0
+text = "100"
+
+[node name="buybuttoncolor" type="ColorRect" parent="."]
+margin_left = 62.0
+margin_top = 36.0
+margin_right = 83.0
+margin_bottom = 47.0
+color = Color( 0.396078, 0.737255, 0.415686, 1 )
+__meta__ = {
+"_editor_description_": "buy
+"
+}
+
+[node name="buybutton" type="Button" parent="."]
+show_behind_parent = true
+margin_left = 62.0
+margin_top = 29.0
+margin_right = 83.0
+margin_bottom = 49.0
+__meta__ = {
+"_editor_description_": "Buy
+"
+}
+
+[node name="icon" type="AnimatedSprite" parent="."]
+position = Vector2( 33, 30 )
+scale = Vector2( 0.091, 0.083 )
+frames = SubResource( 3 )
+animation = "randomseed"
+
+[connection signal="pressed" from="Buttonleft" to="." method="_on_Buttonleft_pressed"]
+[connection signal="pressed" from="Buttonright" to="." method="_on_Buttonright_pressed"]
+[connection signal="pressed" from="buybutton" to="." method="_on_buybutton_pressed"]
